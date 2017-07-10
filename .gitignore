@@ -1,0 +1,4 @@
+**/.kateproject
+node_modules/
+**/yarn.lock
+
