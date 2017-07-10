@@ -1,0 +1,14 @@
+extends container
+block contents
+    if topic 
+        h1 
+            =topic
+        each post in posts
+            div 
+            =post
+        form(method="POST")
+            textarea(name="post_text")
+            input(type="submit" value="Post")
+    else
+        h1 No such topic!
+        

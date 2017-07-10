@@ -1,0 +1,14 @@
+extends container
+block contents
+    h1
+        | Topics:
+    ul
+        each topic in topics
+            li
+                a(href="topic/" + topic.id)
+                    =topic.title
+        else 
+            div
+                | No topics
+    a(href="/new-topic") New topic
+        

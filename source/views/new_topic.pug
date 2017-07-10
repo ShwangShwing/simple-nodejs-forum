@@ -1,0 +1,12 @@
+extends container
+block contents
+    h1 
+        | New topic
+    form(method="POST")
+        div
+            label Title
+            input(type="text" name="title" required)
+        div
+            label Text
+            textarea(name="original_post")
+        input(type="submit")
