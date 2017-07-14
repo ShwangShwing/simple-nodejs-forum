@@ -5,8 +5,10 @@ block contents
     ul
         each topic in topics
             li
-                a(href="topic/" + topic.id)
-                    =topic.title
+                a(href="topic/" + topic._id)
+                    | #{topic.title} 
+                    em
+                        | (#{topic.author})
         else 
             div
                 | No topics

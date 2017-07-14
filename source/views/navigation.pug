@@ -6,7 +6,16 @@ mixin navigation()
         li
             a(href="/topics")
                 | Topics
-        li
-            a(href="Login")
-                | Login
+        if loggedUser
+            li
+                a(href="/logout")
+                    | Logout 
+                    strong #{loggedUser.username}
+        else
+            li
+                a(href="/register")
+                    | Register
+            li
+                a(href="/login")
+                    | Login
     

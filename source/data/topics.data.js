@@ -1,37 +1,37 @@
-const TopicModel = require('../models/topic.model.js')
+const TopicModel = require('../models/topic.model.js');
+const { ObjectId } = require('mongodb');
 
 class TopicsData {
     constructor(db) {
-        this._db = db;
-        this._collection = this._db.collection('topics');
+        this.db = db;
+        this.collection = this.db.collection('topics');
     }
     
-    addTopic(title, originalPost) {
-        const newTopic = new TopicModel(title, originalPost);
-        const id = newTopic.id;
+    addTopic(title, author, originalPost) {
+        const newTopic = new TopicModel(title, author, { postText: originalPost, author });
 
-        this._collection.insert(newTopic)
-            .then(() => newTopic);
+        return this.collection.insert(newTopic)
+            .then((insertResult) => insertResult.ops[0]);
     }
     
     getAll() {
-        const result = this._collection
-            .find({}, {})
-            .toArray();
+        const result = this.collection
+            .find({}, {}).toArray();
         
-        return result;
+        return Promise.resolve(result);
     }
     
     get(id) {
-        const topic = this._topics.filter(topic => topic.id == id)[0];
-        return topic;
+        return this.collection
+            .findOne({ _id: new ObjectId(id) });
     }
     
-    addPostToTopic(topicId, postText) {
-        const topic = this.get(topicId);
-        if (topic) {
-            topic.addPost(postText);
-        }
+    addPostToTopic(topicId, postText, author) {
+        return this.get(topicId)
+            .then((topic) => {
+                topic.posts.push({ postText, author });
+                return this.collection.updateOne({ _id: new ObjectId(topicId) }, topic);
+            });
     }
 }
 

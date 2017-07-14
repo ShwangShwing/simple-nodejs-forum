@@ -1,8 +1,17 @@
 {
   "dependencies": {
+    "babel-eslint": "^7.2.3",
     "body-parser": "^1.17.2",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.3",
+    "eslint": "^4.2.0",
+    "eslint-config-google": "^0.9.1",
     "express": "^4.15.3",
+    "express-messages": "^1.0.1",
+    "express-session": "^1.15.3",
     "mongodb": "^2.2.30",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
     "pug": "^2.0.0-rc.2"
   },
   "name": "simple_nodejs_forum",

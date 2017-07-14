@@ -5,7 +5,9 @@ block contents
             =topic
         each post in posts
             div 
-            =post
+            | #{post.postText} 
+            em
+                | (#{post.author})
         form(method="POST")
             textarea(name="post_text")
             input(type="submit" value="Post")
